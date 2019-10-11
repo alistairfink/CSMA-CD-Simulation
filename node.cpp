@@ -1,18 +1,32 @@
+#include <math.h>
+#include <vector>
+#include <stdlib.h>
 #include <random>
 #include <chrono>
-#include <vector>
-#include <math.h>
-#include <cstdlib>
+
+#include "node.h"
 
 using namespace std;
 
-float x_func(float u, float lamda) {
+Node::Node() {
+	lambda = 0.2;
+	simulation_time =  1000;
+	packets = Generate(lambda, simulation_time);
+}
+
+Node::Node(float lambda_, float total_time) {
+	lambda = lambda_;
+	simulation_time = total_time;
+	packets = Generate(lambda, simulation_time);
+}
+
+float Node::x_func(float u, float lamda) {
     // Compute the Inverse of the exponential cumulatice distribution
     float k = -1.0/lamda;
     return k*log(1-u);
 }
 
-vector<float> generate_packets(float lambda, float total_time) {
+std::vector<float> Node::Generate(float lambda, float total_time) {
     srand(time(0)); 
     vector<float> result;
     float curr_time = 0;
