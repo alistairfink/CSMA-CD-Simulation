@@ -45,3 +45,15 @@ std::vector<float> Node::Generate(float lambda, float total_time) {
 
     return result;
 }
+
+void Node::ResetQueue() {
+
+}
+
+void Node::Backoff() {
+
+}
+
+void Node::FailedTransmission(float currTime) {
+
+}

@@ -5,15 +5,12 @@
 using namespace std;
 
 int main() {
-	Node test = Node(0.2, 1000);
-	for(size_t i = 0; i < test.packets.size(); ++i) {
-		cout << test.packets[i] << endl;
-	}
+	std::vector<Node> Nodes;
+	int nodeCount = 20;
+	for(int i = 0; i < nodeCount; i++) {
+		Nodes.push_back(Node(0.2, 1000));
+	} 
 
-	Node testT = Node(0.2, 2000);
-	for(size_t i = 0; i < testT.packets.size(); ++i) {
-		cout << testT.packets[i] << endl;
-	}
-
+	cout << Nodes.size() << endl;
 	return 1;
 }
