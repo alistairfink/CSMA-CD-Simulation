@@ -13,6 +13,7 @@ Node::Node() {
 	simulation_time =  1000;
 	packets = Generate(lambda, simulation_time);
     backoff_counter = 0;
+    dropped = 0;
 }
 
 Node::Node(float lambda_, float total_time) {
@@ -20,6 +21,7 @@ Node::Node(float lambda_, float total_time) {
 	simulation_time = total_time;
 	packets = Generate(lambda, simulation_time);
     backoff_counter = 0;
+    dropped = 0;
 }
 
 float Node::x_func(float u, float lamda) {
@@ -56,6 +58,10 @@ void Node::Backoff() {
 
 }
 
-void Node::FailedTransmission(float currTime) {
+void Node::ProcessCollision() {
+
+}
+
+void Node::ProcessSuccess() {
 
 }

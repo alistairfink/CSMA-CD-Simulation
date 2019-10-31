@@ -16,10 +16,12 @@ class Node
 		void Backoff();
 	public:
 		std::vector<float> packets;
+		int dropped;
 		
 		Node();
 		Node(float lambda, float total_time);
-		void FailedTransmission(float currTime);
+		void ProcessCollision();
+		void ProcessSuccess();
 }; 
 
 #endif
