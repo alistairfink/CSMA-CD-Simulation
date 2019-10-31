@@ -53,7 +53,19 @@ std::deque<float> Node::Generate(float lambda, float total_time) {
 }
 
 void Node::ProcessCollision() {
-
+    if(backoff_counter >= 10) {
+        dropped++;
+        ProcessSuccess();
+        return;
+    } else {
+        backoff_counter++;
+        srand(time(0));
+        int min = 0;
+        int max = pow(2, backoff_counter)-1;
+        int random = min + rand() % (( max + 1 ) - min);
+        float Tp = 512;
+        AddTime(Tp*random);
+    }
 }
 
 void Node::ProcessSuccess() {
@@ -68,4 +80,8 @@ void Node::ProcessLineBusy_Persistent() {
 
 void Node::ProcessLineBusy_NonPersistent() {
     
+}
+
+void Node::AddTime(float time) {
+
 }

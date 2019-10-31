@@ -13,6 +13,7 @@ class Node
 
 		std::deque<float> Generate(float lambda, float total_time);
 		float x_func(float u, float lamda);
+		void AddTime(float time);
 	public:
 		std::deque<float> packets;
 		int dropped;
