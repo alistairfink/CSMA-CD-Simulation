@@ -56,7 +56,7 @@ void processPackets(int curr_node_index, std::vector<Node> &Nodes, float propSpe
 		if(tnodePacket < tCurrPacket + tProp) {
 			collide = true;
 			metrics.CollisionCount++;
-			Nodes[i].ProcessCollision();
+			Nodes[i].ProcessCollision(packetSize, transmissionSpeed);
 		} else if (tnodePacket > tCurrPacket + tProp && tnodePacket < tCurrPacket + tProp + tTransmission) {
 			// Packet sensed line and it was busy.
 		}
@@ -64,8 +64,7 @@ void processPackets(int curr_node_index, std::vector<Node> &Nodes, float propSpe
 
 	if(collide) {
 		metrics.CollisionCount++;
-		Nodes[curr_node_index].ProcessCollision();
-		// original node collide
+		Nodes[curr_node_index].ProcessCollision(packetSize, transmissionSpeed);
 	} else {
 		metrics.SuccessCount++;
 		// original node success

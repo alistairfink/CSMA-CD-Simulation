@@ -52,7 +52,7 @@ std::deque<float> Node::Generate(float lambda, float total_time) {
     return result;
 }
 
-void Node::ProcessCollision() {
+void Node::ProcessCollision(float packetLength, float transmissionSpeed) {
     if(backoff_counter >= 10) {
         dropped++;
         ProcessSuccess();
@@ -64,7 +64,7 @@ void Node::ProcessCollision() {
         int max = pow(2, backoff_counter)-1;
         int random = min + rand() % (( max + 1 ) - min);
         float Tp = 512;
-        AddTime(Tp*random);
+        AddTime(Tp*random, packetLength, transmissionSpeed);
     }
 }
 
@@ -82,6 +82,12 @@ void Node::ProcessLineBusy_NonPersistent() {
     
 }
 
-void Node::AddTime(float time) {
-
+void Node::AddTime(float pushBackTime, float packetLength, float transmissionSpeed) {
+    float curr = packets.front() + pushBackTime;
+    int i = 0;
+    float timeToTransmit = packetLength / transmissionSpeed;
+    while(i < packets.size() && packets[i] < curr) {
+        packets[i] = curr;
+        curr += timeToTransmit;
+    }
 }
