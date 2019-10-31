@@ -12,12 +12,14 @@ Node::Node() {
 	lambda = 0.2;
 	simulation_time =  1000;
 	packets = Generate(lambda, simulation_time);
+    backoff_counter = 0;
 }
 
 Node::Node(float lambda_, float total_time) {
 	lambda = lambda_;
 	simulation_time = total_time;
 	packets = Generate(lambda, simulation_time);
+    backoff_counter = 0;
 }
 
 float Node::x_func(float u, float lamda) {
