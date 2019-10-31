@@ -1,5 +1,5 @@
 #include <math.h>
-#include <vector>
+#include <deque>
 #include <stdlib.h>
 #include <random>
 #include <chrono>
@@ -14,6 +14,7 @@ Node::Node() {
 	packets = Generate(lambda, simulation_time);
     backoff_counter = 0;
     dropped = 0;
+    nonPersistent_backoff_counter = 0;
 }
 
 Node::Node(float lambda_, float total_time) {
@@ -22,6 +23,7 @@ Node::Node(float lambda_, float total_time) {
 	packets = Generate(lambda, simulation_time);
     backoff_counter = 0;
     dropped = 0;
+    nonPersistent_backoff_counter = 0;
 }
 
 float Node::x_func(float u, float lamda) {
@@ -30,12 +32,12 @@ float Node::x_func(float u, float lamda) {
     return k*log(1-u);
 }
 
-std::vector<float> Node::Generate(float lambda, float total_time) {
+std::deque<float> Node::Generate(float lambda, float total_time) {
     srand(time(0)); 
-    vector<float> result;
+    deque<float> result;
     float curr_time = 0;
     while(curr_time <= total_time) {
-		// Generate random number and pass that and lambda into x_func to get x. Push x to vector.
+		// Generate random number and pass that and lambda into x_func to get x. Push x to deque.
         float rndNum = rand() / ((double) RAND_MAX);
         // If rndNum is 1 then regenerate otherwise will get a domain error in the log function.
         while(rndNum == 1) {
@@ -50,18 +52,20 @@ std::vector<float> Node::Generate(float lambda, float total_time) {
     return result;
 }
 
-void Node::ResetQueue() {
-
-}
-
-void Node::Backoff() {
-
-}
-
 void Node::ProcessCollision() {
 
 }
 
 void Node::ProcessSuccess() {
+    backoff_counter = 0;
+    nonPersistent_backoff_counter = 0;
+    packets.pop_front();
+}
 
+void Node::ProcessLineBusy_Persistent() {
+    
+}
+
+void Node::ProcessLineBusy_NonPersistent() {
+    
 }
