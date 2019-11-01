@@ -7,4 +7,5 @@ Metrics::Metrics() {
     CollisionCount = 0;
     SuccessCount = 0;
     DroppedCount = 0;
+    TotalPacketCount = 0;
 }

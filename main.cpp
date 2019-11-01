@@ -1,5 +1,7 @@
 #include <vector>
 #include <iostream>
+#include <chrono>
+#include <thread>
 #include "node.h"
 #include "metrics.h"
 
@@ -11,28 +13,46 @@ int nextNode(std::vector<Node> &Nodes);
 int abs(int num);
 
 int main() {
-	std::vector<Node> Nodes;
-	int nodeCount = 20;
+	for(float time = 1000.0; time <= 1000.0; time+= 1000.0) {
+		cout << endl << "time: " << time << endl;
+		std::vector<Node> Nodes;
+		int nodeCount = 100;
 
-	float propSpeed = 300000000.0*(2.0/3.0); // Meters/second
-	float interNodeDistance = 10.0; // Meters
-	float packetSize = 1500; // bits
-	float transmissionSpeed = 1000000; // bits/second
+		float propSpeed = 300000000.0*(2.0/3.0); // Meters/second
+		float interNodeDistance = 10.0; // Meters
+		float packetSize = 1500; // bits
+		float transmissionSpeed = 1000000; // bits/second
 
-	Metrics metrics = Metrics();
-	for(int i = 0; i < nodeCount; i++) {
-		Nodes.push_back(Node(0.2, 1000));
-	} 
+		// float time = 1000;
+		float average = 12;
+		Metrics metrics = Metrics();
 
-	while(packetsUnprocessed(Nodes)) {
-		int nextToProcess = nextNode(Nodes);
-		processPackets(nextToProcess, Nodes, propSpeed, interNodeDistance, packetSize, transmissionSpeed, metrics);
+		cout << "Generating " << nodeCount << " Nodes" << endl;
+		for(int i = 0; i < nodeCount; i++) {
+			Node newNode = Node(average, time);
+			metrics.TotalPacketCount += newNode.packets.size();
+			Nodes.push_back(newNode);
+	    	std::this_thread::sleep_for(std::chrono::seconds(1));
+		} 
+
+		cout << "Running Simulation" << endl;
+		while(packetsUnprocessed(Nodes)) {
+			int nextToProcess = nextNode(Nodes);
+			processPackets(nextToProcess, Nodes, propSpeed, interNodeDistance, packetSize, transmissionSpeed, metrics);
+		}
+
+		for(int i = 0; i < Nodes.size(); i++) {
+			metrics.DroppedCount += Nodes[i].dropped;
+		}
+
+		cout << endl << "Results:" << endl;
+		cout << "TransmissionCount: " << metrics.TransmissionCount << endl;
+		cout << "CollisionCount: " << metrics.CollisionCount << endl;
+		cout << "SuccessCount: " << metrics.SuccessCount << endl;
+		cout << "DroppedCount: " << metrics.DroppedCount << endl;
+		cout << "Total Packets: " << metrics.TotalPacketCount << endl;
+		cout << "Efficiency: " << float(metrics.SuccessCount) / metrics.TransmissionCount << endl;
 	}
-
-	for(int i = 0; i < Nodes.size(); i++) {
-		metrics.DroppedCount += Nodes[i].dropped;
-	}
-
 	return 1;
 }
 
@@ -42,32 +62,37 @@ void processPackets(int curr_node_index, std::vector<Node> &Nodes, float propSpe
 	bool collide = false;
 	metrics.TransmissionCount++;
 
+	// cout << "Node: " << curr_node_index << " " << tCurrPacket << " " << Nodes[curr_node_index].packets.size() << endl;
 	for(int i = 0; i < Nodes.size(); i++) {
-		if(i == curr_node_index) {
+		if(i == curr_node_index || Nodes[i].packets.size() == 0) {
 			continue;
 		}
 
 		float tnodePacket = Nodes[i].packets.front();
 
-		float distance = interNodeDistance*abs(curr_node_index-i);
+		float distance = interNodeDistance*float(abs(curr_node_index-i));
 		float tProp = distance/propSpeed;
 		float tTransmission = packetSize/transmissionSpeed;
 
+		// cout << "    Distance: " << distance << " tProP: " << tProp << " tTransmission: " << tTransmission << " Node: " << i << " " << tnodePacket << " " << Nodes[i].packets.size() << " ";
 		if(tnodePacket < tCurrPacket + tProp) {
+			// cout << "Collission: " << i << endl;
 			collide = true;
+			metrics.TransmissionCount++;
 			metrics.CollisionCount++;
-			Nodes[i].ProcessCollision(packetSize, transmissionSpeed);
+			Nodes[i].ProcessCollision(transmissionSpeed);
 		} else if (tnodePacket > tCurrPacket + tProp && tnodePacket < tCurrPacket + tProp + tTransmission) {
-			// Packet sensed line and it was busy.
+			// cout << "Sensed: " << i << endl;
+			Nodes[i].ProcessLineBusy_Persistent(tCurrPacket + tProp + tTransmission);
 		}
 	}
 
 	if(collide) {
 		metrics.CollisionCount++;
-		Nodes[curr_node_index].ProcessCollision(packetSize, transmissionSpeed);
+		Nodes[curr_node_index].ProcessCollision(transmissionSpeed);
 	} else {
 		metrics.SuccessCount++;
-		// original node success
+		Nodes[curr_node_index].ProcessSuccess();
 	}
 }
 
@@ -92,8 +117,9 @@ bool packetsUnprocessed(std::vector<Node> &Nodes) {
 
 int nextNode(std::vector<Node> &Nodes) {
 	int lowest = 0;
-	for(int i = 0; Nodes.size(); i++) {
-		if(Nodes[i].packets.front() < Nodes[lowest].packets.front()) {
+	for(int i = 0; i < Nodes.size(); i++) {
+		if((Nodes[lowest].packets.size() == 0 && Nodes[i].packets.size() > 0) || 
+			(Nodes[i].packets.size() > 0 && Nodes[i].packets.front() < Nodes[lowest].packets.front())) {
 			lowest = i;
 		}
 	}

@@ -8,6 +8,7 @@ class Metrics
 		int CollisionCount;
 		int SuccessCount;
 		int DroppedCount;
+		int TotalPacketCount;
 
 		Metrics();
 }; 

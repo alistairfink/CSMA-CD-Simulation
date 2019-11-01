@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <random>
 #include <chrono>
+#include <iostream>
 
 #include "node.h"
 
@@ -52,7 +53,7 @@ std::deque<float> Node::Generate(float lambda, float total_time) {
     return result;
 }
 
-void Node::ProcessCollision(float packetLength, float transmissionSpeed) {
+void Node::ProcessCollision(float transmissionSpeed) {
     if(backoff_counter >= 10) {
         dropped++;
         ProcessSuccess();
@@ -63,8 +64,8 @@ void Node::ProcessCollision(float packetLength, float transmissionSpeed) {
         int min = 0;
         int max = pow(2, backoff_counter)-1;
         int random = min + rand() % (( max + 1 ) - min);
-        float Tp = 512;
-        AddTime(Tp*random, packetLength, transmissionSpeed);
+        float Tp = 512.0*(1.0/transmissionSpeed); // 512 * 1 bit time
+        AddTime(packets.front()+Tp*random);
     }
 }
 
@@ -74,20 +75,18 @@ void Node::ProcessSuccess() {
     packets.pop_front();
 }
 
-void Node::ProcessLineBusy_Persistent() {
-    
+void Node::ProcessLineBusy_Persistent(float newTime) {
+    AddTime(newTime);
 }
 
 void Node::ProcessLineBusy_NonPersistent() {
     
 }
 
-void Node::AddTime(float pushBackTime, float packetLength, float transmissionSpeed) {
-    float curr = packets.front() + pushBackTime;
+void Node::AddTime(float newTime) {
     int i = 0;
-    float timeToTransmit = packetLength / transmissionSpeed;
-    while(i < packets.size() && packets[i] < curr) {
-        packets[i] = curr;
-        curr += timeToTransmit;
+    while(i < packets.size() && packets[i] < newTime) {
+        packets[i] = newTime;
+        i++;
     }
 }
