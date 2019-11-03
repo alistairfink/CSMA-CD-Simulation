@@ -20,7 +20,7 @@ class Node
 		
 		Node();
 		Node(float lambda, float total_time);
-		void ProcessCollision(float transmissionSpeed);
+		void ProcessCollision(float collissionTime, float transmissionSpeed);
 		void ProcessSuccess();
 		void ProcessLineBusy_Persistent(float newTime);
 		void ProcessLineBusy_NonPersistent();
