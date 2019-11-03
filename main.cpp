@@ -13,6 +13,7 @@ int nextNode(std::vector<Node> &Nodes);
 int abs(int num);
 
 int main() {
+    srand(time(0)); 
 	for(float time = 1000.0; time <= 1000.0; time+= 1000.0) {
 		cout << endl << "time: " << time << endl;
 		std::vector<Node> Nodes;
@@ -32,7 +33,6 @@ int main() {
 			Node newNode = Node(average, time);
 			metrics.TotalPacketCount += newNode.packets.size();
 			Nodes.push_back(newNode);
-	    	std::this_thread::sleep_for(std::chrono::seconds(1));
 		} 
 
 		cout << "Running Simulation" << endl;

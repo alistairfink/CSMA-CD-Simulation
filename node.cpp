@@ -34,7 +34,6 @@ float Node::x_func(float u, float lamda) {
 }
 
 std::deque<float> Node::Generate(float lambda, float total_time) {
-    srand(time(0)); 
     deque<float> result;
     float curr_time = 0;
     while(curr_time <= total_time) {
@@ -60,7 +59,6 @@ void Node::ProcessCollision(float transmissionSpeed) {
         return;
     } else {
         backoff_counter++;
-        srand(time(0));
         int min = 0;
         int max = pow(2, backoff_counter)-1;
         int random = min + rand() % (( max + 1 ) - min);
