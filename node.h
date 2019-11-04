@@ -23,7 +23,7 @@ class Node
 		void ProcessCollision(float collissionTime, float transmissionSpeed);
 		void ProcessSuccess();
 		void ProcessLineBusy_Persistent(float newTime);
-		void ProcessLineBusy_NonPersistent();
+		void ProcessLineBusy_NonPersistent(float transmissionSpeed);
 }; 
 
 #endif

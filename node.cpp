@@ -77,7 +77,19 @@ void Node::ProcessLineBusy_Persistent(float newTime) {
     AddTime(newTime);
 }
 
-void Node::ProcessLineBusy_NonPersistent() {
+void Node::ProcessLineBusy_NonPersistent(float transmissionSpeed) {
+    if(nonPersistent_backoff_counter >= 10) {
+        dropped++;
+        ProcessSuccess();
+        return;
+    } else {
+        nonPersistent_backoff_counter++;
+        int min = 0;
+        int max = pow(2, nonPersistent_backoff_counter)-1;
+        int random = min + rand() % (( max + 1 ) - min);
+        float Tp = 512.0*(1.0/transmissionSpeed); // 512 * 1 bit time
+        AddTime(packets.front()+Tp*random);
+    }
     
 }
 
