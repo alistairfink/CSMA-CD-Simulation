@@ -33,7 +33,7 @@ int main() {
 
 void runDefault() {
 	float time = 1000.0;
-	
+
 	vector<int> labQuestionAverages = {7, 10, 20};
 	for(int i = 0; i < labQuestionAverages.size(); i++) {
 		for(int j = 20; j <= 100; j += 20) {
@@ -149,62 +149,7 @@ void processPackets(int curr_node_index, std::vector<Node> &Nodes, float propSpe
 				Nodes[i].ProcessLineBusy_NonPersistent(transmissionSpeed);
 			}
 		}
-
 	}
-
-
-	// cout << "Node: " << curr_node_index << " " << tCurrPacket << " " << Nodes[curr_node_index].packets.size() << endl;
-	// for(int i = 0; i < Nodes.size(); i++) {
-	// 	if(i == curr_node_index || Nodes[i].packets.size() == 0) {
-	// 		continue;
-	// 	}
-
-	// 	float tnodePacket = Nodes[i].packets.front();
-
-	// 	float distance = interNodeDistance*float(abs(curr_node_index-i));
-	// 	float tProp = distance/propSpeed;
-	// 	float tTransmission = packetSize/transmissionSpeed;
-
-	// 	// cout << "    Distance: " << distance << " tProP: " << tProp << " tTransmission: " << tTransmission << " Node: " << i << " " << tnodePacket << " " << Nodes[i].packets.size() << " ";
-	// 	if(tnodePacket < tCurrPacket + tProp) {
-	// 		// cout << "Collission: " << i << endl;
-	// 		collide = true;
-	// 		metrics.TransmissionCount++;
-	// 		metrics.CollisionCount++;
-	// 		collisionIndex.push_back(i);
-	// 		if(collissionTime == -1 || collissionTime < tnodePacket) {
-	// 			collissionTime = tnodePacket;
-	// 		}
-	// 	}
-	// }
-
-	// if(collide) {
-	// 	metrics.CollisionCount++;
-	// 	Nodes[curr_node_index].ProcessCollision( collissionTime, transmissionSpeed);
-	// 	for(int i = 0; i < collisionIndex.size(); i++) {
-	// 		Nodes[collisionIndex[i]].ProcessCollision(collissionTime, transmissionSpeed);
-	// 	}
-	// } else {
-	// 	metrics.SuccessCount++;
-	// 	Nodes[curr_node_index].ProcessSuccess();
-	// 	for(int i = 0; i < Nodes.size(); i++) {
-	// 		if(i == curr_node_index || Nodes[i].packets.size() == 0) {
-	// 			continue;
-	// 		}
-
-	// 		float tnodePacket = Nodes[i].packets.front();
-
-	// 		float distance = interNodeDistance*float(abs(curr_node_index-i));
-	// 		float tProp = distance/propSpeed;
-	// 		float tTransmission = packetSize/transmissionSpeed;
-
-	// 		// cout << "    Distance: " << distance << " tProP: " << tProp << " tTransmission: " << tTransmission << " Node: " << i << " " << tnodePacket << " " << Nodes[i].packets.size() << " ";
-	// 		if (tnodePacket > tCurrPacket + tProp && tnodePacket < tCurrPacket + tProp + tTransmission) {
-	// 			// cout << "Sensed: " << i << endl;
-	// 			Nodes[i].ProcessLineBusy_Persistent(tCurrPacket + tProp + tTransmission);
-	// 		}
-	// 	}
-	// }
 }
 
 int abs(int num) {

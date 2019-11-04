@@ -1,0 +1,210 @@
+Run Default Simulations? (y/n) time: 1000
+Average Packets/s 7
+Generating 20 Nodes
+Running Simulation
+
+Results:
+TransmissionCount: 140073
+CollisionCount: 0
+SuccessCount: 140073
+DroppedCount: 0
+Total Packets: 140073
+Efficiency: 1
+------------------------------------------------
+
+time: 1000
+Average Packets/s 7
+Generating 40 Nodes
+Running Simulation
+
+Results:
+TransmissionCount: 280525
+CollisionCount: 22
+SuccessCount: 280503
+DroppedCount: 3
+Total Packets: 280506
+Efficiency: 0.999922
+------------------------------------------------
+
+time: 1000
+Average Packets/s 7
+Generating 60 Nodes
+Running Simulation
+
+Results:
+TransmissionCount: 419206
+CollisionCount: 220
+SuccessCount: 418986
+DroppedCount: 100
+Total Packets: 419086
+Efficiency: 0.999475
+------------------------------------------------
+
+time: 1000
+Average Packets/s 7
+Generating 80 Nodes
+Running Simulation
+
+Results:
+TransmissionCount: 559189
+CollisionCount: 484
+SuccessCount: 558705
+DroppedCount: 1037
+Total Packets: 559742
+Efficiency: 0.999134
+------------------------------------------------
+
+time: 1000
+Average Packets/s 7
+Generating 100 Nodes
+Running Simulation
+
+Results:
+TransmissionCount: 695425
+CollisionCount: 770
+SuccessCount: 694655
+DroppedCount: 5811
+Total Packets: 700466
+Efficiency: 0.998893
+------------------------------------------------
+
+time: 1000
+Average Packets/s 10
+Generating 20 Nodes
+Running Simulation
+
+Results:
+TransmissionCount: 200597
+CollisionCount: 0
+SuccessCount: 200597
+DroppedCount: 0
+Total Packets: 200597
+Efficiency: 1
+------------------------------------------------
+
+time: 1000
+Average Packets/s 10
+Generating 40 Nodes
+Running Simulation
+
+Results:
+TransmissionCount: 401253
+CollisionCount: 0
+SuccessCount: 401253
+DroppedCount: 59
+Total Packets: 401312
+Efficiency: 1
+------------------------------------------------
+
+time: 1000
+Average Packets/s 10
+Generating 60 Nodes
+Running Simulation
+
+Results:
+TransmissionCount: 597818
+CollisionCount: 154
+SuccessCount: 597664
+DroppedCount: 1606
+Total Packets: 599270
+Efficiency: 0.999742
+------------------------------------------------
+
+time: 1000
+Average Packets/s 10
+Generating 80 Nodes
+Running Simulation
+
+Results:
+TransmissionCount: 790734
+CollisionCount: 522
+SuccessCount: 790212
+DroppedCount: 10646
+Total Packets: 800858
+Efficiency: 0.99934
+------------------------------------------------
+
+time: 1000
+Average Packets/s 10
+Generating 100 Nodes
+Running Simulation
+
+Results:
+TransmissionCount: 972811
+CollisionCount: 1562
+SuccessCount: 971249
+DroppedCount: 29123
+Total Packets: 1000372
+Efficiency: 0.998394
+------------------------------------------------
+
+time: 1000
+Average Packets/s 20
+Generating 20 Nodes
+Running Simulation
+
+Results:
+TransmissionCount: 398960
+CollisionCount: 0
+SuccessCount: 398960
+DroppedCount: 23
+Total Packets: 398983
+Efficiency: 1
+------------------------------------------------
+
+time: 1000
+Average Packets/s 20
+Generating 40 Nodes
+Running Simulation
+
+Results:
+TransmissionCount: 795133
+CollisionCount: 66
+SuccessCount: 795067
+DroppedCount: 6228
+Total Packets: 801295
+Efficiency: 0.999917
+------------------------------------------------
+
+time: 1000
+Average Packets/s 20
+Generating 60 Nodes
+Running Simulation
+
+Results:
+TransmissionCount: 1173493
+CollisionCount: 550
+SuccessCount: 1172943
+DroppedCount: 26714
+Total Packets: 1199657
+Efficiency: 0.999531
+------------------------------------------------
+
+time: 1000
+Average Packets/s 20
+Generating 80 Nodes
+Running Simulation
+
+Results:
+TransmissionCount: 1549947
+CollisionCount: 971
+SuccessCount: 1548976
+DroppedCount: 54232
+Total Packets: 1603208
+Efficiency: 0.999374
+------------------------------------------------
+
+time: 1000
+Average Packets/s 20
+Generating 100 Nodes
+Running Simulation
+
+Results:
+TransmissionCount: 1918196
+CollisionCount: 3168
+SuccessCount: 1915028
+DroppedCount: 84876
+Total Packets: 1999904
+Efficiency: 0.998348
+------------------------------------------------
+
