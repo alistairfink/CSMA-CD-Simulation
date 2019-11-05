@@ -8,4 +8,5 @@ Metrics::Metrics() {
     SuccessCount = 0;
     DroppedCount = 0;
     TotalPacketCount = 0;
+    SimulationTime = 0;
 }

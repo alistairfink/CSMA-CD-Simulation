@@ -108,6 +108,7 @@ void runSim(float time, float average, int nodeCount) {
 	cout << "DroppedCount: " << metrics.DroppedCount << endl;
 	cout << "Total Packets: " << metrics.TotalPacketCount << endl;
 	cout << "Efficiency: " << float(metrics.SuccessCount) / metrics.TransmissionCount << endl;
+	cout << "Throughput: " <<  (1500.0 * metrics.SuccessCount) / metrics.SimulationTime << " bits/s" << endl;
 	cout << "------------------------------------------------" << endl << endl;
 }
 
@@ -122,6 +123,8 @@ void processPackets(int curr_node_index, std::vector<Node> &Nodes, float propSpe
 
 	float tProp = interNodeDistance / propSpeed;
 	float tTrans = packetSize / transmissionSpeed;
+
+	metrics.SimulationTime = tCurrPacket;
 
 	for(int i = 0; i < Nodes.size(); i++) {
 		if(i == curr_node_index || Nodes[i].packets.size() == 0) {

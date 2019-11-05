@@ -9,6 +9,7 @@ class Metrics
 		int SuccessCount;
 		int DroppedCount;
 		int TotalPacketCount;
+		float SimulationTime;
 
 		Metrics();
 }; 
