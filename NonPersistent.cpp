@@ -18,7 +18,10 @@ void runDefault();
 void customSim();
 
 int main() {
+	// Seed random
     srand(time(0));
+
+    // Prompt user to run default sim.
 	cout << "Run Default Simulations? (y/n) ";
 	char response;
 	cin >> response;
@@ -34,6 +37,7 @@ int main() {
 void runDefault() {
 	float time = 1000.0;
 
+	// Run simulation scenarios from lab manual
 	vector<int> labQuestionAverages = {7, 10, 20};
 	for(int i = 0; i < labQuestionAverages.size(); i++) {
 		for(int j = 20; j <= 100; j += 20) {
@@ -44,6 +48,7 @@ void runDefault() {
 
 void customSim() {
 	for(;;) {
+		// Promp User for simulation parameters then run simulation
 		float time, average;
 		int nodeCount;
 		cout << "Simulation Time (Seconds): ";
@@ -57,18 +62,22 @@ void customSim() {
 }
 
 void runSim(float time, float average, int nodeCount) {
+	// Ouput inputted time and average packets
 	cout << "time: " << time << endl;
 	cout << "Average Packets/s " << average << endl;
 
 	std::vector<Node> Nodes;
 
+	// Constants from lab manual.
 	float propSpeed = 300000000.0*(2.0/3.0); // Meters/second
 	float interNodeDistance = 10.0; // Meters
 	float packetSize = 1500; // bits
 	float transmissionSpeed = 1000000; // bits/second
 
+	// Instantiating metrics object
 	Metrics metrics = Metrics();
 
+	// Instantiate nodeCount Nodes. Each will generate a dequeue of packets.
 	cout << "Generating " << nodeCount << " Nodes" << endl;
 	for(int i = 0; i < nodeCount; i++) {
 		Node newNode = Node(average, time);
@@ -76,21 +85,19 @@ void runSim(float time, float average, int nodeCount) {
 		Nodes.push_back(newNode);
 	} 
 
+	// Run Simulation. While there are nodes find the next node to process then process it.
 	cout << "Running Simulation" << endl;
 	while(packetsUnprocessed(Nodes)) {
-		// for(int i = 0; i < Nodes.size(); i++) {
-		// 	cout << i << ": " << Nodes[i].packets.size() << " ";
-		// }
-
-		// cout << endl;
 		int nextToProcess = nextNode(Nodes);
 		processPackets(nextToProcess, Nodes, propSpeed, interNodeDistance, packetSize, transmissionSpeed, metrics);
 	}
 
+	// Sum up dropped packets.
 	for(int i = 0; i < Nodes.size(); i++) {
 		metrics.DroppedCount += Nodes[i].dropped;
 	}
 
+	// Ouput metrics.
 	cout << endl << "Results:" << endl;
 	cout << "TransmissionCount: " << metrics.TransmissionCount << endl;
 	cout << "CollisionCount: " << metrics.CollisionCount << endl;
@@ -156,6 +163,7 @@ void processPackets(int curr_node_index, std::vector<Node> &Nodes, float propSpe
 }
 
 int abs(int num) {
+	// Return absolute of number
 	if(num < 0) {
 		return -num;
 	}
@@ -164,6 +172,7 @@ int abs(int num) {
 }
 
 int max(int num1, int num2) {
+	// Return maximum out of num1 and num2
 	if(num1 < num2) {
 		return num2;
 	}
@@ -172,6 +181,7 @@ int max(int num1, int num2) {
 }
 
 int min(int num1, int num2) {
+	// Return mininum out of num1 and num2
 	if(num1 < num2) {
 		return num1;
 	}
@@ -179,8 +189,8 @@ int min(int num1, int num2) {
 	return num2;
 }
 
-// Check if there are packets unprocesed.
 bool packetsUnprocessed(std::vector<Node> &Nodes) {
+	// Check if any nodes still have packets left in deque
 	for(int i = 0; i < Nodes.size(); i++) {
 		if(Nodes[i].packets.size() > 0) {
 			return true;
@@ -191,6 +201,7 @@ bool packetsUnprocessed(std::vector<Node> &Nodes) {
 }
 
 int nextNode(std::vector<Node> &Nodes) {
+	// Find node with packets that has the next packet as the closest to current time.
 	int lowest = 0;
 	for(int i = 0; i < Nodes.size(); i++) {
 		if((Nodes[lowest].packets.size() == 0 && Nodes[i].packets.size() > 0) || 
