@@ -97,7 +97,7 @@ void runSim(float time, float average, int nodeCount) {
 	cout << "SuccessCount: " << metrics.SuccessCount << endl;
 	cout << "DroppedCount: " << metrics.DroppedCount << endl;
 	cout << "Total Packets: " << metrics.TotalPacketCount << endl;
-	cout << "Efficiency: " << float(metrics.SuccessCount) / metrics.TransmissionCount << endl;
+	cout << "Efficiency: " << float(metrics.SuccessCount) / metrics.TotalPacketCount << endl;
 	cout << "Throughput: " <<  (1500.0 * metrics.SuccessCount) / metrics.SimulationTime << " bits/s" << endl;
 	cout << "------------------------------------------------" << endl << endl;
 }

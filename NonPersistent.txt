@@ -4,13 +4,13 @@ Generating 20 Nodes
 Running Simulation
 
 Results:
-TransmissionCount: 140240
+TransmissionCount: 140305
 CollisionCount: 0
-SuccessCount: 140240
+SuccessCount: 140305
 DroppedCount: 0
-Total Packets: 140240
+Total Packets: 140305
 Efficiency: 1
-Throughput: 210298 bits/s
+Throughput: 210367 bits/s
 ------------------------------------------------
 
 time: 1000
@@ -19,13 +19,13 @@ Generating 40 Nodes
 Running Simulation
 
 Results:
-TransmissionCount: 279272
+TransmissionCount: 279718
 CollisionCount: 0
-SuccessCount: 279272
+SuccessCount: 279718
 DroppedCount: 1
-Total Packets: 279273
-Efficiency: 1
-Throughput: 418761 bits/s
+Total Packets: 279719
+Efficiency: 0.999996
+Throughput: 419167 bits/s
 ------------------------------------------------
 
 time: 1000
@@ -34,13 +34,13 @@ Generating 60 Nodes
 Running Simulation
 
 Results:
-TransmissionCount: 420082
-CollisionCount: 154
-SuccessCount: 419928
-DroppedCount: 67
-Total Packets: 419995
-Efficiency: 0.999633
-Throughput: 629465 bits/s
+TransmissionCount: 419389
+CollisionCount: 44
+SuccessCount: 419345
+DroppedCount: 88
+Total Packets: 419433
+Efficiency: 0.99979
+Throughput: 628532 bits/s
 ------------------------------------------------
 
 time: 1000
@@ -49,13 +49,13 @@ Generating 80 Nodes
 Running Simulation
 
 Results:
-TransmissionCount: 559852
-CollisionCount: 396
-SuccessCount: 559456
-DroppedCount: 1055
-Total Packets: 560511
-Efficiency: 0.999293
-Throughput: 838679 bits/s
+TransmissionCount: 559815
+CollisionCount: 616
+SuccessCount: 559199
+DroppedCount: 980
+Total Packets: 560179
+Efficiency: 0.998251
+Throughput: 838293 bits/s
 ------------------------------------------------
 
 time: 1000
@@ -64,13 +64,13 @@ Generating 100 Nodes
 Running Simulation
 
 Results:
-TransmissionCount: 695119
-CollisionCount: 858
-SuccessCount: 694261
-DroppedCount: 5856
-Total Packets: 700117
-Efficiency: 0.998766
-Throughput: 1.04063e+06 bits/s
+TransmissionCount: 694306
+CollisionCount: 880
+SuccessCount: 693426
+DroppedCount: 5708
+Total Packets: 699134
+Efficiency: 0.991836
+Throughput: 1.03943e+06 bits/s
 ------------------------------------------------
 
 time: 1000
@@ -79,13 +79,13 @@ Generating 20 Nodes
 Running Simulation
 
 Results:
-TransmissionCount: 200396
+TransmissionCount: 200291
 CollisionCount: 0
-SuccessCount: 200396
+SuccessCount: 200291
 DroppedCount: 0
-Total Packets: 200396
+Total Packets: 200291
 Efficiency: 1
-Throughput: 300501 bits/s
+Throughput: 300325 bits/s
 ------------------------------------------------
 
 time: 1000
@@ -94,13 +94,13 @@ Generating 40 Nodes
 Running Simulation
 
 Results:
-TransmissionCount: 400504
-CollisionCount: 0
-SuccessCount: 400504
-DroppedCount: 35
-Total Packets: 400539
-Efficiency: 1
-Throughput: 600550 bits/s
+TransmissionCount: 399585
+CollisionCount: 88
+SuccessCount: 399497
+DroppedCount: 36
+Total Packets: 399533
+Efficiency: 0.99991
+Throughput: 598965 bits/s
 ------------------------------------------------
 
 time: 1000
@@ -109,13 +109,13 @@ Generating 60 Nodes
 Running Simulation
 
 Results:
-TransmissionCount: 598951
-CollisionCount: 194
-SuccessCount: 598757
-DroppedCount: 1648
-Total Packets: 600405
-Efficiency: 0.999676
-Throughput: 897603 bits/s
+TransmissionCount: 597277
+CollisionCount: 176
+SuccessCount: 597101
+DroppedCount: 1582
+Total Packets: 598683
+Efficiency: 0.997358
+Throughput: 895326 bits/s
 ------------------------------------------------
 
 time: 1000
@@ -124,13 +124,13 @@ Generating 80 Nodes
 Running Simulation
 
 Results:
-TransmissionCount: 789203
-CollisionCount: 792
-SuccessCount: 788411
-DroppedCount: 10595
-Total Packets: 799006
-Efficiency: 0.998996
-Throughput: 1.18203e+06 bits/s
+TransmissionCount: 790469
+CollisionCount: 1162
+SuccessCount: 789307
+DroppedCount: 10670
+Total Packets: 799977
+Efficiency: 0.986662
+Throughput: 1.18334e+06 bits/s
 ------------------------------------------------
 
 time: 1000
@@ -139,13 +139,13 @@ Generating 100 Nodes
 Running Simulation
 
 Results:
-TransmissionCount: 971888
-CollisionCount: 1870
-SuccessCount: 970018
-DroppedCount: 28926
-Total Packets: 998944
-Efficiency: 0.998076
-Throughput: 1.45403e+06 bits/s
+TransmissionCount: 972673
+CollisionCount: 1580
+SuccessCount: 971093
+DroppedCount: 29114
+Total Packets: 1000207
+Efficiency: 0.970892
+Throughput: 1.45581e+06 bits/s
 ------------------------------------------------
 
 time: 1000
@@ -154,13 +154,13 @@ Generating 20 Nodes
 Running Simulation
 
 Results:
-TransmissionCount: 399626
+TransmissionCount: 399053
 CollisionCount: 0
-SuccessCount: 399626
-DroppedCount: 40
-Total Packets: 399666
-Efficiency: 1
-Throughput: 599324 bits/s
+SuccessCount: 399053
+DroppedCount: 21
+Total Packets: 399074
+Efficiency: 0.999947
+Throughput: 598465 bits/s
 ------------------------------------------------
 
 time: 1000
@@ -169,13 +169,13 @@ Generating 40 Nodes
 Running Simulation
 
 Results:
-TransmissionCount: 793402
-CollisionCount: 220
-SuccessCount: 793182
-DroppedCount: 6177
-Total Packets: 799359
-Efficiency: 0.999723
-Throughput: 1.18913e+06 bits/s
+TransmissionCount: 795806
+CollisionCount: 128
+SuccessCount: 795678
+DroppedCount: 6273
+Total Packets: 801951
+Efficiency: 0.992178
+Throughput: 1.19301e+06 bits/s
 ------------------------------------------------
 
 time: 1000
@@ -184,13 +184,13 @@ Generating 60 Nodes
 Running Simulation
 
 Results:
-TransmissionCount: 1174362
-CollisionCount: 702
-SuccessCount: 1173660
-DroppedCount: 26922
-Total Packets: 1200582
-Efficiency: 0.999402
-Throughput: 1.75977e+06 bits/s
+TransmissionCount: 1172983
+CollisionCount: 608
+SuccessCount: 1172375
+DroppedCount: 26758
+Total Packets: 1199133
+Efficiency: 0.977686
+Throughput: 1.75777e+06 bits/s
 ------------------------------------------------
 
 time: 1000
@@ -200,12 +200,12 @@ Running Simulation
 
 Results:
 TransmissionCount: 1547784
-CollisionCount: 1210
-SuccessCount: 1546574
-DroppedCount: 54234
-Total Packets: 1600808
-Efficiency: 0.999218
-Throughput: 2.3185e+06 bits/s
+CollisionCount: 1186
+SuccessCount: 1546598
+DroppedCount: 54247
+Total Packets: 1600845
+Efficiency: 0.966114
+Throughput: 2.31879e+06 bits/s
 ------------------------------------------------
 
 time: 1000
@@ -214,12 +214,12 @@ Generating 100 Nodes
 Running Simulation
 
 Results:
-TransmissionCount: 1919454
-CollisionCount: 3056
-SuccessCount: 1916398
-DroppedCount: 84511
-Total Packets: 2000909
-Efficiency: 0.998408
-Throughput: 2.87263e+06 bits/s
+TransmissionCount: 1919621
+CollisionCount: 2460
+SuccessCount: 1917161
+DroppedCount: 84819
+Total Packets: 2001980
+Efficiency: 0.957632
+Throughput: 2.87353e+06 bits/s
 ------------------------------------------------
 
