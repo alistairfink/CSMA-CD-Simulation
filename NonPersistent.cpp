@@ -111,26 +111,34 @@ void runSim(float time, float average, int nodeCount) {
 
 // Check if each node will sense line as busy or will collide.
 void processPackets(int curr_node_index, std::vector<Node> &Nodes, float propSpeed, float interNodeDistance, float packetSize, float transmissionSpeed, Metrics &metrics) {
+	// tCurrPacket is currently processing packet. For convenience. 
 	float tCurrPacket = Nodes[curr_node_index].packets.front();
 
+	// Set up collision stuff.
 	bool collide = false;
 	vector<int> collisionIndex;
 	collisionIndex.push_back(curr_node_index);
 	float collisionTime = -1.0; 
 
+	// Calulate time for prop delay and time for transmission delay.
 	float tProp = interNodeDistance / propSpeed;
 	float tTrans = packetSize / transmissionSpeed;
 
 	metrics.SimulationTime = tCurrPacket;
 	
+	// Loop through packets.
 	for(int i = 0; i < Nodes.size(); i++) {
 		if(i == curr_node_index || Nodes[i].packets.size() == 0) {
 			continue;
 		}
 
+		// If Node will send a packet before the current packet + prop delay for that node then it will collide.
 		if(Nodes[i].packets.front() < tCurrPacket + tProp*float(abs(i-curr_node_index))) {
+			// Set collide to true and push this node's index to collisionindex.
 			collide = true;
 			collisionIndex.push_back(i);
+
+			// Calculate intersection time between the 2 nodes. If this time is the lowest collision time then use that collision time.
 			int left = min(i, curr_node_index);
 			int right = max(i, curr_node_index);
 			float tempCollisionTime = float(right - left) * interNodeDistance / (2*propSpeed);
@@ -141,15 +149,19 @@ void processPackets(int curr_node_index, std::vector<Node> &Nodes, float propSpe
 	}
 
 	if(collide) {
+		// If node collided with one or more other nodes then lop through all the colliding nodes and do exponential backoff for each node with the lowest collision time.
 		for(int i = 0; i < collisionIndex.size(); i++) {
 			metrics.TransmissionCount++;
 			metrics.CollisionCount++;
 			Nodes[collisionIndex[i]].ProcessCollision(collisionTime, transmissionSpeed);
 		}
 	} else {
+		// If nothing collided then the transmission was successful.
 		Nodes[curr_node_index].ProcessSuccess();
 		metrics.TransmissionCount++;
 		metrics.SuccessCount++;
+
+		// Loop through all the nodes that do sense the current node and set them to only try to transmit when the current node stops transmitting.
 		for(int i = 0; i < Nodes.size(); i++) {
 			if(i == curr_node_index || Nodes[i].packets.size() == 0) {
 				continue;
